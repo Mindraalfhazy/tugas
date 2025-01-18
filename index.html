@@ -4,37 +4,59 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>FT-UIM</title>
-    <link rel="icon" href="img/LOGO_UIM_.png" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" rel="stylesheet" />
-    <style>
-        .slick-slide img {
-            display: block;
-            width: 100%;
-            height: 450px;
-            /* Adjusted height */
-            object-fit: cover;
-        }
+    <html lang="en">
 
-        .service-icon {
-            transition: all 0.3s ease;
-        }
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <link rel="icon" href="img/LOGO_UIM_.png" type="image/x-icon">
+        <title>FT-UIM</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" rel="stylesheet" />
+        <style>
+            .slick-slide img {
+                display: block;
+                width: 100%;
+                height: 450px;
+                /* Adjusted height */
+                object-fit: cover;
+            }
 
-        .service-icon-md:hover {
-            opacity: 50%;
-        }
+            .service-icon {
+                transition: all 0.3s ease;
+            }
 
-        .service-icon:hover {
-            background-color: #2b79ff;
-            animation: shake infinite 7ms;
-            transform-origin: center;
-            cursor: pointer;
+            .service-icon-md:hover {
+                opacity: 50%;
+            }
 
-        }
-    </style>
-</head>
+            .service-icon:hover {
+                background-color: #2b79ff;
+                animation: shake infinite 7ms;
+                transform-origin: center;
+                cursor: pointer;
+
+            }
+
+            .video-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin: 10 auto;
+                /* Tempatkan di tengah halaman dengan scroll */
+            }
+
+            .video-container iframe {
+                width: 100%;
+                max-width: 100%;
+                height: 315px;
+                border: none;
+            }
+        </style>
+    </head>
 
 <body class="font-sans">
     <header class="bg-white shadow-md">
@@ -154,6 +176,13 @@
                     </div>
                 </div>
             </div>
+            <div class="video-container">
+                <iframe id="youtube-video"
+                    src="https://www.youtube.com/embed/ZGKMMatl5Zc?autoplay=1&mute=1&enablejsapi=1" frameborder="0"
+                    allow="autoplay; encrypted-media" allowfullscreen>
+                </iframe>
+
+            </div>
         </section>
         <section class="mt-12">
             <h2 id="layanan" class="text-center text-2xl font-bold">LAYANAN FALKUTAS TEKNIK</h2>
@@ -189,6 +218,17 @@
                     <p class="mt-2">PERPUSTAKAAN</p>
                 </a>
             </div>
+            <div class="mt-8 text-center">
+                <br><br>
+                <h3 class="text-xl font-bold">ALAMAT KAMPUS</h3>
+                <p class="text-center mt-2">Jl. Perintis Kemerdekaan No.KM.9, RW.No.29, Tamalanrea Indah, Kec.
+                    Tamalanrea, Kota Makassar, Sulawesi Selatan 90245</p><br>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31790.385631261244!2d119.47281565511298!3d-5.1361692698172075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbf02a7e0adbbeb%3A0xe9fbbb77bf3cc0b0!2sUniversitas%20Islam%20Makassar!5e0!3m2!1sid!2sid!4v1736966952362!5m2!1sid!2sid"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
         </section>
     </main>
     <footer class="bg-gray-100 py-6 mt-12">
@@ -229,7 +269,17 @@
                 mobileMenu.style.display = 'none';
             }
         });
+
+        const iframe = document.getElementById('youtube-video');
+
+        // Fungsi untuk memulai video
+        function playVideo() {
+            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        }
+
+        // Memicu pemutaran video saat pengguna menggulir atau mengklik halaman
+        document.addEventListener('click', playVideo, { once: true });
+        window.addEventListener('scroll', playVideo, { once: true });
+
     </script>
 </body>
-
-</html>
